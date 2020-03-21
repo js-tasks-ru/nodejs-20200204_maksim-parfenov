@@ -7,6 +7,7 @@ module.exports.productsBySubcategory = async function productsBySubcategory(ctx,
 
     return next();
   }
+
   try {
     const productBySubCat = await Product.find({subcategory: ctx.query.subcategory});
     ctx.body = {
