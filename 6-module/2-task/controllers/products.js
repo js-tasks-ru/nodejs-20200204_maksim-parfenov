@@ -5,6 +5,7 @@ module.exports.productsBySubcategory = async function productsBySubcategory(ctx,
   if (!('subcategory' in ctx.query)) {
     ctx.body = {};
 
+
     return next();
   }
 
