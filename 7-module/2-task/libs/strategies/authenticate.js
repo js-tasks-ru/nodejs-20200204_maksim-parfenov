@@ -13,6 +13,7 @@ module.exports = async function authenticate(strategy, email, displayName, done)
       user = await newUser.save();
     }
 
+
     return done(null, user);
   } catch (err) {
     done(err);
