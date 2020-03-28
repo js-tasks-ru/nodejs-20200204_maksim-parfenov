@@ -11,6 +11,7 @@ module.exports.checkout = async function checkout(ctx, next) {
 
   await order.save();
 
+
   await sendMail({
     template: 'order-confirmation',
     locals: {id: order.id, product: {title: ctx.request.body.product.id}},
