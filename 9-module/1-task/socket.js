@@ -13,13 +13,13 @@ function socket(server) {
       return next(new Error('anonymous sessions are not allowed'));
     }
 
-    const user = Session.findOne({token}).populate('user');
+    const session = await Session.findOne({token}).populate('user');
 
-    if (!user) {
+    if (!session) {
       return next(new Error('wrong or expired session token'));
     }
 
-    socket.user = user;
+    socket.user = session.user;
 
     next();
   });
@@ -29,7 +29,7 @@ function socket(server) {
       await Message.create({
         date: new Date(),
         text: message,
-        chat: socket.user.id,
+        chat: socket.user,
         user: socket.user.displayName,
       });
       // socket.broadcast.emit('message', {from, message});
