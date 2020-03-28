@@ -25,7 +25,7 @@ function socket(server) {
   });
 
   io.on('connection', function(socket) {
-    socket.on('message', async ({from, message}) => {
+    socket.on('message', async (message) => {
       await Message.create({
         date: new Date(),
         text: message,
